@@ -39,15 +39,15 @@ public class CsvStreamScannableTable extends CsvScannableTable
     super(source, protoRowType);
   }
 
-  @Override protected boolean isStream() {
-    return true;
-  }
-
   @Override public String toString() {
     return "CsvStreamScannableTable";
   }
 
   @Override public Table stream() {
-    return this;
+    return new CsvScannableTable(source, protoRowType) {
+      @Override protected boolean isStream() {
+        return true;
+      }
+    };
   }
 }
