@@ -57,8 +57,8 @@ public class CsvScannableTable extends CsvTable
     final AtomicBoolean cancelFlag = DataContext.Variable.CANCEL_FLAG.get(root);
     return new AbstractEnumerable<@Nullable Object[]>() {
       @Override public Enumerator<@Nullable Object[]> enumerator() {
-        return new CsvEnumerator<>(source, cancelFlag, false, null,
-            CsvEnumerator.arrayConverter(fieldTypes, fields, false));
+        return new CsvEnumerator<>(source, cancelFlag, isStream(), null,
+            CsvEnumerator.arrayConverter(fieldTypes, fields, isStream()));
       }
     };
   }
